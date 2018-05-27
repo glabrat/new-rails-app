@@ -56,4 +56,7 @@ Rails.application.configure do
     host: 'localhost',
     port: 3000
   }
+
+  #config.cache_store = :redis_cache_store, "localhost", {expires_in: 20.minutes}
+  #config.action_controller.perform_caching = true
 end

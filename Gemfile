@@ -32,7 +32,8 @@ gem 'rack-cors'
 # Use active_model_serializers for json
 gem 'active_model_serializers', '~> 0.10.0'
 
-
+# Cache store
+gem "redis", "~> 4.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
