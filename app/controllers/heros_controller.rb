@@ -8,9 +8,13 @@ class HerosController < ApplicationController
     render json: @heros
   end
 
-  # GET /heros/1
+  # GET /heros/:id
   def show
-    render json: @hero
+    set_hero
+
+    if stale?(last_modified: @hero.updated_at)
+      render json: @hero
+    end
   end
 
   # POST /heros
@@ -26,6 +30,7 @@ class HerosController < ApplicationController
 
   # PATCH/PUT /heros/1
   def update
+    set_hero
     if @hero.update(hero_params)
       render json: @hero
     else
@@ -35,6 +40,7 @@ class HerosController < ApplicationController
 
   # DELETE /heros/1
   def destroy
+    set_hero
     @hero.destroy
   end
 
