@@ -5,7 +5,7 @@ class HerosController < ApplicationController
   def index
     @heros = Hero.all
 
-    render json: @heros
+    json_response(@heros)
   end
 
   # GET /heros/:id
@@ -13,7 +13,7 @@ class HerosController < ApplicationController
     set_hero
 
     if stale?(last_modified: @hero.updated_at)
-      render json: @hero
+      json_response(@hero)
     end
   end
 
@@ -24,21 +24,22 @@ class HerosController < ApplicationController
     if @hero.save
       render json: @hero, status: :created, location: @hero
     else
-      render json: @hero.errors, status: :unprocessable_entity
+      json_response(@hero.errors, :unprocessable_entity)
     end
   end
 
-  # PATCH/PUT /heros/1
+  # PATCH/PUT /heros/:id
   def update
     set_hero
     if @hero.update(hero_params)
-      render json: @hero
+      #http://billpatrianakos.me/blog/2013/10/13/list-of-rails-status-code-symbols/
+      json_response(@hero, :no_content)
     else
-      render json: @hero.errors, status: :unprocessable_entity
+      json_response(@hero.errors, :unprocessable_entity)
     end
   end
 
-  # DELETE /heros/1
+  # DELETE /heros/:id
   def destroy
     set_hero
     @hero.destroy

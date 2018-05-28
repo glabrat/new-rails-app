@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Hero, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  describe 'Should validate presence of name' do
+    it { should validate_presence_of(:name) } 
+  end
 end
