@@ -82,4 +82,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Example of redis
+  # config.cache_store = :redis_cache_store, {url: "redis://192.168.0.10:6379/0"}
 end
