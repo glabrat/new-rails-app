@@ -32,5 +32,15 @@ module NewRailsApp
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.generators.test_framework :rspec
+
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+                 :headers => :any,
+                 :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+                 :methods => [:get, :post, :options, :delete, :put, :patch]
+      end
+    end
   end
 end

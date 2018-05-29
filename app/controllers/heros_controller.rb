@@ -5,7 +5,7 @@ class HerosController < ApplicationController
   def index
     @heros = Hero.all
 
-    json_response(@heros)
+    json_response(@heros.order('id ASC'))
   end
 
   # GET /heros/:id
@@ -53,6 +53,6 @@ class HerosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def hero_params
-      params.require(:hero).permit(:name, :status)
+      params.require(:hero).permit(:id, :name, :status)
     end
 end

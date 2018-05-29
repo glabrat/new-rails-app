@@ -5,3 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# This works for migration 2018_05_27_202231
+heros_list = [
+    ["Protón","active"],
+    ["Neutrón","active"],
+    ["Minimis","active"],
+    ["Catrón","active"],
+    ["Caurus","active"],
+    ["Knoep","active"],
+    ["Maximus","inactive"],
+    ["Deerpool","active"],
+    ["SupaMan","active"],
+    ["W31rD0","active"],
+    ["Secuaz","inactive"],
+    ["Secuas","inactive"],
+]
+
+heros_list.each do |name, status| 
+    Hero.create(name: name, status: status)
+end
